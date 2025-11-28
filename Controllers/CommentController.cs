@@ -38,7 +38,7 @@ namespace api.Controllers
             {
                 return NotFound();
             }
-            return Ok(commentModels);
+            return Ok(commentModels.ToCommentDto());
         }
 
         [HttpPost]
