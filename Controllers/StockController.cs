@@ -16,12 +16,9 @@ namespace api.Controllers
     [ApiController]
     public class StockController: ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-        
         private readonly IStockRepository _stockRepo;
-        public StockController(ApplicationDbContext context, IStockRepository stockRepo)
+        public StockController(IStockRepository stockRepo)
         {
-            _context = context;
             _stockRepo = stockRepo;
         }
 
@@ -44,7 +41,7 @@ namespace api.Controllers
             return Ok(stock.ToStockDto()); 
         }
 
-        [HttpPost]
+        [HttpPost()]
         public async Task<IActionResult> Create([FromBody] CreateStockRequestDto stockDto)
         {
             var stockModel = stockDto.ToStockFromCreateDta();

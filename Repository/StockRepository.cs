@@ -38,9 +38,14 @@ namespace api.Repository
             return stockModel;
         }
 
-        public Task<List<Stock>> GetAllAsync()
+        public async Task<bool> DoesStockExist(int id)
         {
-            return _context.Stocks.Include(x =>x.Comments).ToListAsync();
+            return await _context.Stocks.AnyAsync(x => x.Id == id);
+        }
+
+        public async Task<List<Stock>> GetAllAsync()
+        {
+            return await _context.Stocks.Include(x =>x.Comments).ToListAsync();
         }
 
         public async Task<Stock?> GetStockByIdAsync(int id)
