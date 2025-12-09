@@ -4442,7 +4442,8 @@
       "Microsoft.EntityFrameworkCore.Tools >= 10.0.0",
       "Microsoft.Extensions.Identity.Core >= 10.0.0",
       "Newtonsoft.Json >= 13.0.4",
-      "Swashbuckle.AspNetCore >= 10.0.1"
+      "Swashbuckle.AspNetCore >= 10.0.1",
+      "Swashbuckle.AspNetCore.Swagger >= 10.0.1"
     ]
   },
   "packageFolders": {
@@ -4536,6 +4537,10 @@
             "version": "[13.0.4, )"
           },
           "Swashbuckle.AspNetCore": {
+            "target": "Package",
+            "version": "[10.0.1, )"
+          },
+          "Swashbuckle.AspNetCore.Swagger": {
             "target": "Package",
             "version": "[10.0.1, )"
           }
