@@ -64,5 +64,27 @@ namespace api.Controllers
             }
 
     }
+
+    [HttpDelete]
+    [Authorize]
+    public async Task<IActionResult> DeletePortfolio(string symbol)
+    {
+       var username = User.GetUsername();
+       var appUser = await _userManager.FindByNameAsync(username);
+       var userPortfolio = await _portfolioRepository.GetUserPortfolio(appUser);
+       var filteredStock = userPortfolio.Where(s => s.Symbol.ToLower() == symbol.ToLower());
+
+       if(filteredStock.Count() == 1)
+        {
+            var portfolioModel = await _portfolioRepository.DeletePortfolio(appUser, symbol);
+            if(portfolioModel == null)
+                {
+                    return BadRequest("We couldn't delete this portfolio, try again later");
+                }
+            return Ok("This portfolio was deleted successfully");
+        }
+        return BadRequest("This portfolio does not exist");
+
+    }
   }
 }
